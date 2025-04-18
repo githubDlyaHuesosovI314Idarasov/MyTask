@@ -1,0 +1,25 @@
+﻿@model AboutPageModel
+
+@{
+    ViewData["Title"] = "About service";
+}
+
+<h2>About URL shortener service</h2>
+
+<div class="mb-4">
+    <p>@Model.Description</p>
+</div>
+
+@if (Model.IsAdmin)
+{
+    <form asp-action="About" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="description">Редактировать описание:</label>
+            <textarea class="form-control" name="Description" rows="6">@Model.Description</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Сохранить</button>
+    </form>
+}

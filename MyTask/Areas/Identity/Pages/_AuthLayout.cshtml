@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center flex">
+    <div class="col-md-6 mt-5">
+        <div class="card login-logout-card mx-auto" style="max-width: 500px">
+
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-tabs">
+                        <a class="nav-link" href="/Identity/Account/Login">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-tabs">
+
+                        <a class="nav-link" href ="/Identity/Account/Register">
+                            Register
+                        </a>
+                    </li>
+
+                </ul>
+
+
+
+            </div>
+            <div class="card-body">
+                <div class="col-md-11 my-4 mx-auto">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts{
+    @await RenderSectionAsync("Scripts", required: false);
+    <script>
+        $(function () {
+            const currentPage = location.pathname;
+            $('.nav-tabs li a').each(function () {
+                const $this = $(this);
+                if (currentPage.toLowerCase().indexOf($this.attr('href').toLowerCase()) !== -1) {
+                    $this.addClass('active');
+                }
+            })
+        })
+    </script>
+}

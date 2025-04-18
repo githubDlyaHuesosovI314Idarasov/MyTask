@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Models.ShortUrl>
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>View</title>
+    </head>
+    <body>
+    <p>
+        <a asp-action="Create">Add new Url</a>
+    </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Url)
+                        
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Short)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        <a href="@Html.DisplayFor(modelItem => item.Url)">@Html.DisplayFor(modelItem => item.Url)</a>
+                    </td>
+                    <td>
+                        <a href="@($"https://localhost:7119/r/{item.Short}")">@($"https://localhost:7119/r/{item.Short}")</a>
+                    </td>
+                    <td>
+                        
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </body>
+</html>
